@@ -85,3 +85,14 @@ console.log(company.calculateTotalPayroll());
 // Expected output: 165600 (assuming emp1 and mgr1 salaries)
 
 //TASK 5
+class Comnpany {
+    promoteToManager(employee, teamSize) { // promotes an emplopyee to a manager
+        const newManager = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
+        this.employees = this.employees.map(emp => (emp.id === employee.id ? newManager : emp));
+    }
+}
+
+// Test cases
+company.promoteToManager(emp1, 3);
+company.listEmployees();
+// Expected output: "Manager: Alice Johnson, ID: 101, Department: Sales, Salary: $5000, Team Size: 3"
