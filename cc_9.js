@@ -48,7 +48,7 @@ console.log(mgr1.getDetails());
 console.log(mgr1.calculateBonus()); 
 // Expected output: 9600
 
-//TASK 3
+//TASK 3 (+ 4 and 5)
 class Company {
     constructor(name) {
         this.name = name; // sets company name
@@ -56,11 +56,20 @@ class Company {
     }
 
     addEmployee(employee) { // adds an employee
-        this.employee.push(employee);
+        this.employees.push(employee);
     }
 
     listEmployees() { // lists all current employees
         this.employees.forEach(emp => console.log(emp.getDetails()));
+    }
+
+    calculateTotalPayroll() { // calculates payroll
+        return this.employees.reduce((total, emp) => total + emp.calculateAnnualSalary(), 0);
+    }
+
+    promoteToManager(employee,teamSize) { // promotes employee to manager
+        const newManager = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
+        this.employees = this.employees.map(emp => (emp.id === employee.id ? newManager : emp));
     }
 }
 
@@ -73,26 +82,13 @@ company.listEmployees();
 // "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
 // "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
 
-//TASK 4
-class Company {
-    calculateTotalPayroll() { // calculates total payroll expenses
-        return this.employees.reduce((total, emp) => total + emp.calculateAnnualSalary(), 0);
-    }
-}
 
-// Test cases 
+//TASK 4 Test cases 
 console.log(company.calculateTotalPayroll()); 
 // Expected output: 165600 (assuming emp1 and mgr1 salaries)
 
-//TASK 5
-class Comnpany {
-    promoteToManager(employee, teamSize) { // promotes an emplopyee to a manager
-        const newManager = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
-        this.employees = this.employees.map(emp => (emp.id === employee.id ? newManager : emp));
-    }
-}
 
-// Test cases
+//TASK 5 Test cases
 company.promoteToManager(emp1, 3);
 company.listEmployees();
 // Expected output: "Manager: Alice Johnson, ID: 101, Department: Sales, Salary: $5000, Team Size: 3"
