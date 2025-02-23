@@ -75,7 +75,7 @@ company.listEmployees();
 
 //TASK 4
 class Company {
-    calculateTotalPayroll() {
+    calculateTotalPayroll() { // calculates total payroll expenses
         return this.employees.reduce((total, emp) => total + emp.calculateAnnualSalary(), 0);
     }
 }
@@ -84,3 +84,4 @@ class Company {
 console.log(company.calculateTotalPayroll()); 
 // Expected output: 165600 (assuming emp1 and mgr1 salaries)
 
+//TASK 5
